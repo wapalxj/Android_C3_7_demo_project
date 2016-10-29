@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.vero.c5_hm01_guard.HomeActivity">
+    <TextView
+        android:id="@+id/home_tv"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:gravity="center"
+        android:background="#5500ff00"
+        android:textSize="24sp"
+        android:text="主界面"
+        />
+    <TextView
+        android:id="@+id/singleline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:text="我是一个会滚动的主界面，An activity provides a user interface for a single screen in your application
+        Activities can move into the background and then be resumed with their state restored"
+        />
+
+    <GridView
+        android:id="@+id/home_gridview"
+        android:numColumns="3"
+        android:listSelector="@drawable/gv_list_selector"
+        android:verticalSpacing="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </GridView>
+</LinearLayout>
