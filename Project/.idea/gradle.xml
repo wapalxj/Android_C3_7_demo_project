@@ -10,7 +10,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/app_radio_listview" />
             <option value="$PROJECT_DIR$/c5_hm01_guard" />
           </set>
         </option>
