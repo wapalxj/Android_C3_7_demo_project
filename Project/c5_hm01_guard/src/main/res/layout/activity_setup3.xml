@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setup1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        style="@style/tv_title"
+        android:text="3.设置安全号码"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SIM卡如果发生变化：\n报警短信就会发给安全号码"
+        />
+    <EditText
+        android:inputType="phone"
+        android:id="@+id/et_setup3_safeNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入安全号码"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:onClick="selectSafeNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="选择安全号码"
+            android:background="@drawable/btn_selector"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        >
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:drawable/presence_invisible"
+            />
+
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:drawable/presence_invisible"
+            />
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:drawable/presence_online"
+            />
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:drawable/presence_invisible"
+            />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/phone"
+            android:layout_centerInParent="true"
+            />
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_selector"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="下一步"
+            android:onClick="next"
+            />
+        <Button
+            android:id="@+id/btn_pre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_selector"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:text="上一步"
+            android:onClick="prev"
+            />
+    </RelativeLayout>
+
+
+</LinearLayout>

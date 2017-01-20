@@ -5,12 +5,15 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="G:\2016软件包\Allpackages\Software\Android\2.0\android-studio\gradle\gradle-2.14.1" />
+        <option name="gradleHome" value="D:\Program Files\Android\Android Studio\gradle\gradle-2.14.1" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/c5_hm01_guard" />
+            <option value="$PROJECT_DIR$/gpsdemo" />
+            <option value="$PROJECT_DIR$/testSms" />
+            <option value="$PROJECT_DIR$/testlockscreen" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

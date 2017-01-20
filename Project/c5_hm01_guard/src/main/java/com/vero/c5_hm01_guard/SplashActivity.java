@@ -3,14 +3,18 @@ package com.vero.c5_hm01_guard;
  * Splash
  */
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,6 +45,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import domain.UrlBean;
 
@@ -61,6 +67,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkAPI();
         initView();
         initData();
         initAnimation();
@@ -167,8 +174,10 @@ public class SplashActivity extends AppCompatActivity {
 //                    }
                     Message msg=Message.obtain();
                     if (errorCode==-1){
+                        //访问正常的时候，判断版本号
                         msg.what=isNewVersion(parsedJson);
                     }else {
+                        //访问出错的时候
                         msg.what=ERROR;
                         msg.arg1=errorCode;
                     }
@@ -281,14 +290,17 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     /**
-     * 更新版本
+     * 下载新版本
      * XUtils2
      */
     private void updateAPK() {
         HttpUtils utils=new HttpUtils();
         //先删除之前下载的
         File file=new File("/mnt/sdcard/v2.apk");
-        file.delete();
+        if (file.exists()){
+            file.delete();
+        }
+
         /**
          * 参数1：URL
          * 参数2：本地路径
@@ -375,5 +387,58 @@ public class SplashActivity extends AppCompatActivity {
         //如果用户取消安装，则直接进入主界面
         loadHome();
         super.onActivityResult(requestCode, resultCode, data);
+    }
+    private void checkAPI() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            List<String> permissions=new ArrayList<>();
+            int readExternalStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+            int writeExternalStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            int readPhoneState  = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+            int readContacts  = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
+            int writeContacts = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS);
+            int sendSmsPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+            int readSmsPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS);
+            int receiveSmsPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
+            int location=ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+            int location2=ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+
+            if(readExternalStorage != PackageManager.PERMISSION_GRANTED){
+                permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
+            if(writeExternalStorage != PackageManager.PERMISSION_GRANTED){
+                permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+
+            if(readPhoneState != PackageManager.PERMISSION_GRANTED){
+                permissions.add(Manifest.permission.READ_PHONE_STATE);
+            }
+            if(readContacts != PackageManager.PERMISSION_GRANTED){
+                permissions.add(Manifest.permission.READ_CONTACTS);
+            }
+            if(writeContacts != PackageManager.PERMISSION_GRANTED){
+                permissions.add(Manifest.permission.WRITE_CONTACTS);
+            }
+
+            if(sendSmsPermission != PackageManager.PERMISSION_GRANTED){
+                permissions.add(Manifest.permission.SEND_SMS);
+            }
+            if(readSmsPermission != PackageManager.PERMISSION_GRANTED){
+                permissions.add(Manifest.permission.READ_SMS);
+            }
+            if(receiveSmsPermission != PackageManager.PERMISSION_GRANTED){
+                permissions.add(Manifest.permission.RECEIVE_SMS);
+            }
+            if(location!=PackageManager.PERMISSION_GRANTED){
+                permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            }
+            if(location2!=PackageManager.PERMISSION_GRANTED){
+                permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            }
+            if(permissions.size()>0){
+                ActivityCompat.requestPermissions(this,permissions.toArray(new String[permissions.size()]),1);
+            }
+
+
+        }
     }
 }

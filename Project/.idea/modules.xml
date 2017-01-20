@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/Project.iml" filepath="$PROJECT_DIR$/Project.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/c5_hm01_guard/c5_hm01_guard.iml" filepath="$PROJECT_DIR$/c5_hm01_guard/c5_hm01_guard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gpsdemo/gpsdemo.iml" filepath="$PROJECT_DIR$/gpsdemo/gpsdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testSms/testSms.iml" filepath="$PROJECT_DIR$/testSms/testSms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testlockscreen/testlockscreen.iml" filepath="$PROJECT_DIR$/testlockscreen/testlockscreen.iml" />
     </modules>
   </component>
 </project>

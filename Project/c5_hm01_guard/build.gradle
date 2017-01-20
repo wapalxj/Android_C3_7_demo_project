@@ -1,15 +1,16 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "com.vero.c5_hm01_guard"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "vero版本1.0"
+
+        //ADD THESE LINES---test:
     }
     buildTypes {
         release {
@@ -17,11 +18,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    //ADD THESE LINES---test:
 }
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.jiechic.library:xUtils:2.6.14'
+
+    //ADD THESE LINES---test:
 }
+
+
