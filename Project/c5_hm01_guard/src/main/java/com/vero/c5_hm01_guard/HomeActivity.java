@@ -2,7 +2,6 @@ package com.vero.c5_hm01_guard;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
@@ -10,7 +9,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -66,9 +64,15 @@ public class HomeActivity extends AppCompatActivity {
                             //已设置过则为登录对话框
                             showEnterPassDialog();
                         }
-
                         break;
-                    case 1:
+                    case 8://设置中心
+                        Intent setting=new Intent(HomeActivity.this,SettingCenterActivity.class);
+                        startActivity(setting);
+                        break;
+                    case 1://通讯卫士
+//                        Intent safe=new Intent(HomeActivity.this,TelSmsSafeActivityPage.class);
+                        Intent safe=new Intent(HomeActivity.this,TelSmsSafeActivity.class);
+                        startActivity(safe);
                         break;
                      default:
                         break;
@@ -202,10 +206,20 @@ public class HomeActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             View view=View.inflate(HomeActivity.this,R.layout.item_home_gridview,null);
             ImageView imageView= (ImageView) view.findViewById(R.id.iv_item_home_gv_icon);
-            TextView textView= (TextView) view.findViewById(R.id.tv_item_home_gv_name);
+            TextView tv_name= (TextView) view.findViewById(R.id.tv_item_home_gv_name);
 
             imageView.setImageResource(icons[position]);
-            textView.setText(names[position]);
+            tv_name.setText(names[position]);
+
+            //判断是否存在新的手机防盗名
+            if(position==0){//只判断手机防盗的位置
+                //判断是否存在新的手机防盗名
+                if(!TextUtils.isEmpty(SpTools.getString(getApplicationContext(),MyConstants.LOSTFINDNAME,""))){
+                    //有新的手机防盗名
+                    tv_name.setText(SpTools.getString(getApplicationContext(),MyConstants.LOSTFINDNAME,""));
+                }
+            }
+
             return view;
         }
     }
@@ -222,5 +236,10 @@ public class HomeActivity extends AppCompatActivity {
             }
 
         }
+    }
+    @Override
+    protected void onResume() {
+        mAdapter.notifyDataSetChanged();
+        super.onResume();
     }
 }

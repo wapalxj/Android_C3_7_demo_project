@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import Utils.EncrypyTools;
 import Utils.MyConstants;
 import Utils.SpTools;
+import service.LocationService;
 
 public class Setup3Activity extends BaseSetupActivity {
     private EditText et_safeNumber;
@@ -22,7 +24,10 @@ public class Setup3Activity extends BaseSetupActivity {
     @Override
     public void initData() {
         super.initData();
-        et_safeNumber.setText(SpTools.getString(this,MyConstants.SAFENUMBER,""));
+        //获取并解密安全号码
+        String safeNum = SpTools.getString(Setup3Activity.this, MyConstants.SAFENUMBER, "");
+        safeNum=EncrypyTools.decrypt(MyConstants.ENCRYSEED,safeNum);
+        et_safeNumber.setText(safeNum);
     }
 
     @Override
@@ -66,7 +71,8 @@ public class Setup3Activity extends BaseSetupActivity {
             Toast.makeText(this, "安全号码不能为空", Toast.LENGTH_SHORT).show();
             return;
         }else {
-            //保存安全号码
+            //加密并保存安全号码
+            safeNum= EncrypyTools.encrypt(MyConstants.ENCRYSEED,safeNum);
             SpTools.putString(this, MyConstants.SAFENUMBER,safeNum);
         }
         super.next(view);//继续咯

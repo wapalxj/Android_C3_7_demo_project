@@ -9,6 +9,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/03_12_menu_change_appname" />
+            <option value="$PROJECT_DIR$/03_14_popupwindow" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/c5_hm01_guard" />
             <option value="$PROJECT_DIR$/gpsdemo" />

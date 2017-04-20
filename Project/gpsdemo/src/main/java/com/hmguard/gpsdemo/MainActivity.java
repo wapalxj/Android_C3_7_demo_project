@@ -7,6 +7,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -22,7 +23,7 @@ import java.util.List;
 /**
  * 真机多半测试失败
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
     TextView tv_msg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         Log.e("onCreate","onCreate:");
-        lm.requestLocationUpdates("gps", 0, 0, locationListener);
+//        lm.requestLocationUpdates("gps", 0, 0, locationListener);
 
 
     }
@@ -117,5 +118,23 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,pers.toArray(new String[pers.size()]),1);
         }
         return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.e("onRequestPermissions",""+grantResults[0]);
+        switch (requestCode){
+            case 1:
+                if(grantResults.length>0){
+                    List<String> deniedPermission=new ArrayList<>();
+                    for (int i =0;i<grantResults.length; i++) {
+                        boolean isTip = ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[i]);
+                        int grantResult=grantResults[i];
+                        Log.e("grantResult",isTip+","+grantResult);
+                    }
+                }
+                break;
+        }
     }
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#00ff00"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        style="@style/tv_title"
+        android:textColor="#000"
+        android:text="修改手机防盗名"
+        />
+    <EditText
+        android:background="#330000"
+        android:id="@+id/et_dialog_lostfind_modify_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_lostfind_modify"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_selector"
+            android:textColor="#000"
+            android:text="修改"
+
+            />
+        <Button
+            android:id="@+id/btn_lostfind_modify_cancel"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_selector"
+            android:textColor="#000"
+            android:text="取消"/>
+    </LinearLayout>
+</LinearLayout>

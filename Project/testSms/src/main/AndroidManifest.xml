@@ -25,6 +25,12 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="com.vero.vnix"/>
             </intent-filter>
+            <intent-filter >
+                <action android:name="android.intent.action.MEDIA_MOUNTED"/>
+                <action android:name="android.intent.action.MEDIA_UNMOUNTED"/>
+                <data android:scheme="file">
+                </data>
+            </intent-filter>
         </receiver>
     </application>
 

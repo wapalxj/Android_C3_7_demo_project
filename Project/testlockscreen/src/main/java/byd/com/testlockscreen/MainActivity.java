@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //设备管理员权限
-        dpm = (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
+        dpm = (DevicePolicyManager)
+                getSystemService(DEVICE_POLICY_SERVICE);
     }
 
     /**
@@ -31,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
         ComponentName who=new ComponentName(this,DeviceAdminSample.class);
         if(dpm.isAdminActive(who)){
             //已经有权限了
-
             //一键锁屏
             dpm.lockNow();
+            finish();
         }else {
             //帮助用户打开激活设备管理器界面，让用户激活
             Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);

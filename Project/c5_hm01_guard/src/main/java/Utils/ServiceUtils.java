@@ -25,7 +25,7 @@ public class ServiceUtils {
         for (ActivityManager.RunningServiceInfo rSinfo: infos ) {
 //            Log.e("serices","serices: "+info.service.getClassName());
             if(rSinfo.service.getClassName().equals(serviceName)){
-                //名字一直，表示该服务在运行中
+                //名字一致，表示该服务在运行中
                 isRunning=true;
             }
         }

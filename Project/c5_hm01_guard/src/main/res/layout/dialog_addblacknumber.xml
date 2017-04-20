@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#A3A3A3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        style="@style/tv_title"
+        android:textColor="#000"
+        android:text="添加黑名单号码"
+        />
+    <EditText
+        android:textColor="#000"
+        android:id="@+id/et_telsmssafe_blacknumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:textColor="#000"
+            android:id="@+id/cb_telsmssafe_smsmode"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="短信拦截"
+            />
+        <CheckBox
+            android:textColor="#000"
+            android:id="@+id/cb_telsmssafe_phonemode"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="号码拦截"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:textColor="#000"
+            android:id="@+id/btn_telsmssafe_add"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_selector"
+            android:text="添加"
+
+            />
+        <Button
+            android:textColor="#000"
+            android:id="@+id/btn_telsmssafe_cancel"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_selector"
+            android:text="取消"/>
+    </LinearLayout>
+</LinearLayout>

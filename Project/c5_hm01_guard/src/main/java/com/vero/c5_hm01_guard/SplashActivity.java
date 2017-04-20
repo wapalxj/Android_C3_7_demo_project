@@ -8,13 +8,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.os.EnvironmentCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,6 +42,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -48,6 +52,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import Utils.MyConstants;
+import Utils.SpTools;
 import domain.UrlBean;
 
 public class SplashActivity extends AppCompatActivity {
@@ -71,9 +77,77 @@ public class SplashActivity extends AppCompatActivity {
         initView();
         initData();
         initAnimation();
-        checkVersion();
+        //拷贝数据库
+        copyDB("address.db");
     }
 
+    //拷贝文件
+    private void copyDB(final String dbName){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //判断文件是否已经存在
+                File file=new File("/data/data/"+getPackageName()+"/files/"+"/"+dbName);
+                if(file.exists()){
+                    //文件已经存在
+                    return;
+                }
+                try {
+                    copyFile(dbName);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
+
+    /**
+     * 把assets目录下的数据库文件拷贝到本地
+     *
+     * @param dbName:文件名
+     */
+    private void copyFile(String dbName) throws IOException {
+        //IO流
+        AssetManager assetManager=getAssets();
+        //读取asset的文件，转换成InputStream
+        InputStream is=assetManager.open(dbName);
+        //输出流
+        FileOutputStream fos=openFileOutput(dbName,MODE_PRIVATE);
+
+        //流的拷贝
+        //定义缓冲区
+        byte[] buffer=new byte[10240];
+
+        //读取的长度
+        int len =-1;
+        int counts=1;//计数器
+        //循环读取
+        while ((len=is.read(buffer))!=-1){
+            //把缓冲区的数据，写到输出流
+            fos.write(buffer,0,len);
+            //每100K刷新一次数据
+            if(counts % 10 ==0){
+                fos.flush();
+            }
+            counts++;
+        }
+        fos.flush();
+        fos.close();
+        is.close();
+    }
+
+    /**
+     * 耗时的功能封装，只要是耗时的处理，都放进来
+     */
+    private void timeInit(){
+        if(SpTools.getBoolean(getApplicationContext(), MyConstants.AUTOUPDATE,false)){
+            //动画播放开始
+            //检测版本更新
+            //判断是否进行服务器版本的检测
+            checkVersion();
+        }
+    }
     private void initData() {
         //获取自己的版本信息
         PackageManager pm=getPackageManager();
@@ -107,6 +181,31 @@ public class SplashActivity extends AppCompatActivity {
         sets.addAnimation(scale);
         sets.setDuration(3000);
         sets.setFillAfter(true);
+        //设置动画完成的事件监听
+        sets.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                //动画一开始，就应该初始化数据(耗时操作：网络，本地数据初始化，数据copy等)
+                timeInit();
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                //动画播放结束
+                //不做版本检测的时候则直接进入主界面，否则将操作交给自动更新执行
+                if(!SpTools.getBoolean(getApplicationContext(), MyConstants.AUTOUPDATE,false)){
+                    loadHome();
+                }else {
+                    //界面的衔接是自动更新，再此不做处理
+                }
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         //显示动画
         mRoot.startAnimation(sets);
     }
@@ -126,7 +225,7 @@ public class SplashActivity extends AppCompatActivity {
                 try {
                     //开始的时间
                     startTime = System.currentTimeMillis();
-                    URL url=new URL("http://10.0.3.2:8080/guard.json");
+                    URL url=new URL("http://10.0.2.2:8080/guard.json");
                     conn= (HttpURLConnection) url.openConnection();
                     conn.setReadTimeout(5000);
                     conn.setConnectTimeout(8000);
@@ -437,8 +536,6 @@ public class SplashActivity extends AppCompatActivity {
             if(permissions.size()>0){
                 ActivityCompat.requestPermissions(this,permissions.toArray(new String[permissions.size()]),1);
             }
-
-
         }
     }
 }

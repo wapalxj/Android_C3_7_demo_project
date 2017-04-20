@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/03_12_menu_change_appname/03_12_menu_change_appname.iml" filepath="$PROJECT_DIR$/03_12_menu_change_appname/03_12_menu_change_appname.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_14_popupwindow/03_14_popupwindow.iml" filepath="$PROJECT_DIR$/03_14_popupwindow/03_14_popupwindow.iml" />
       <module fileurl="file://$PROJECT_DIR$/Project.iml" filepath="$PROJECT_DIR$/Project.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/c5_hm01_guard/c5_hm01_guard.iml" filepath="$PROJECT_DIR$/c5_hm01_guard/c5_hm01_guard.iml" />

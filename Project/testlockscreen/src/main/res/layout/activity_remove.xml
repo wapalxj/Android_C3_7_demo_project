@@ -10,10 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="byd.com.testlockscreen.RemoveActivity">
     <Button
-        android:id="@+id/lockscreen"
+        android:id="@+id/remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="lockScreen"
-        android:text="锁屏" />
+        android:onClick="remove"
+        android:text="一键卸载" />
 
 </RelativeLayout>

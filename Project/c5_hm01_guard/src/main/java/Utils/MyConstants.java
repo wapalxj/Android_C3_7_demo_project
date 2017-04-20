@@ -10,4 +10,8 @@ public interface MyConstants {
     String ISSETUP="issetup";//是否进入设置向导界面
     String SIM = "simSerialNumber";
     String SAFENUMBER = "safenumber";
+    int ENCRYSEED=120;//加密/解密种子
+    String LOSTFIND="bootlostfind";//开机是否开启手机防盗
+    String LOSTFINDNAME="lostfindname";//手机防盗名
+    String AUTOUPDATE="autoupdate";//自动更新设置
 }

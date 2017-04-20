@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import Utils.EncrypyTools;
 import Utils.MyConstants;
 import Utils.SpTools;
 
@@ -73,7 +74,9 @@ public class LocationService extends Service {
                 //发送短信
                 //取出安全号码
                 String safeNum = SpTools.getString(LocationService.this, MyConstants.SAFENUMBER, "");
+                safeNum= EncrypyTools.decrypt(MyConstants.ENCRYSEED,safeNum);//解密安全号码
                 //发送短信给安全号码
+                Log.e("onLocationChanged", "即将发送的安全号号码：" + safeNum);
                 SmsManager sm = SmsManager.getDefault();
                 sm.sendTextMessage(safeNum, "", "msg:" + tv_msg, null, null);
                 //关闭GPS

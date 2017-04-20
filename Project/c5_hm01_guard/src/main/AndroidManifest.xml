@@ -12,10 +12,14 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <!-- 开机启动广播权限 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- 发送短信权限 -->
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+
 
     <application
         android:allowBackup="true"
@@ -37,6 +41,7 @@
         <activity android:name=".Setup3Activity" />
         <activity android:name=".Setup4Activity" />
         <activity android:name=".FriendsActivity" />
+        <activity android:name=".CallLogsActivity" />
 
         <service
             android:name="service.LostFindService"
@@ -51,11 +56,37 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name="receiver.DeviceAdminReceiver"
+            android:description="@string/sample_device_admin_description"
+            android:label="管理员"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_sample" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
 
         <service
             android:name="service.LocationService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".SettingCenterActivity" />
+        <activity
+            android:name=".TelSmsSafeActivity"
+            android:label="@string/title_activity_tel_sms_safe"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".TelSmsSafeActivityPage" />
+        <activity android:name=".SmsLogsActivity" />
+
+        <service
+            android:name="service.TelSmsBlackService"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>
