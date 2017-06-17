@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.os.EnvironmentCompat;
@@ -535,6 +536,14 @@ public class SplashActivity extends AppCompatActivity {
             }
             if(permissions.size()>0){
                 ActivityCompat.requestPermissions(this,permissions.toArray(new String[permissions.size()]),1);
+            }
+
+            //6.0以上对应的开启SYSTEM_OVERLAY_WINDOW权限
+            //这里用于来电归属地显示的自定义Toast
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivity(intent);
             }
         }
     }

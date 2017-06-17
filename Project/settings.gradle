@@ -1,1 +1,2 @@
-include ':app', ':c5_hm01_guard', ':testSms', ':gpsdemo', ':testlockscreen', ':03_12_menu_change_appname', ':03_14_popupwindow'
+include ':app', ':c5_hm01_guard', ':testSms', ':gpsdemo', ':testlockscreen', ':03_12_menu_change_appname', ':03_14_popupwindow', ':testrocket', ':testwriteexternalstorage7.0'
+include ':autoListView'

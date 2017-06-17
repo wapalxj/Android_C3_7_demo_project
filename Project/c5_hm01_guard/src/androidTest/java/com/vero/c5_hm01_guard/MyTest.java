@@ -53,6 +53,6 @@ public class MyTest extends AndroidTestCase {
     }
     //号码归属地查询
     public void testLocation(){
-        Log.e("lllll", PhoneLocationEngine.query("1343056",getContext()));
+        Log.e("lllll", PhoneLocationEngine.moblieQuery("13985390252",getContext()));
     }
 }

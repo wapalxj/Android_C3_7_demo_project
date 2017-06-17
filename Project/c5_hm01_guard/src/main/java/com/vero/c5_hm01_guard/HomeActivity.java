@@ -65,6 +65,10 @@ public class HomeActivity extends AppCompatActivity {
                             showEnterPassDialog();
                         }
                         break;
+                    case 7://高级工具
+                        Intent atool=new Intent(HomeActivity.this,AToolActivity.class);
+                        startActivity(atool);
+                        break;
                     case 8://设置中心
                         Intent setting=new Intent(HomeActivity.this,SettingCenterActivity.class);
                         startActivity(setting);
