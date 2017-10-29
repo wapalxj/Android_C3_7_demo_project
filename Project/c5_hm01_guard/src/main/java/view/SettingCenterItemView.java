@@ -48,6 +48,10 @@ public class SettingCenterItemView extends LinearLayout{
         initEvent();
         String title=attrs.getAttributeValue(namespace,"title");
         String content=attrs.getAttributeValue(namespace,"content");
+        int rId=attrs.getAttributeResourceValue(namespace,"cb_bg",-1);
+        if (rId!=-1){
+            cb_check.setButtonDrawable(rId);
+        }
         tv_title.setText(title);
         Log.e("title","title="+title+",content"+content);
         contents = content.split("-");

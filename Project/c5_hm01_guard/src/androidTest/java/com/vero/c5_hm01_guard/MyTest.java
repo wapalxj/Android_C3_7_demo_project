@@ -8,11 +8,14 @@ import java.util.List;
 
 import Utils.ServiceUtils;
 import dao.BlackDao;
+import dao.LockedDao;
 import db.BlackDB;
+import db.LockedDB;
 import domain.BlackBean;
 import domain.BlackTable;
 import engine.PhoneLocationEngine;
 import engine.ReadContactsEngine;
+import engine.TaskManagerEngine;
 
 /**
  * Created by Administrator on 2017/1/2.
@@ -54,5 +57,17 @@ public class MyTest extends AndroidTestCase {
     //号码归属地查询
     public void testLocation(){
         Log.e("lllll", PhoneLocationEngine.moblieQuery("13985390252",getContext()));
+    }
+
+    public void testTaskInfo() {
+        TaskManagerEngine.getAllRunningTaskInfos(getContext());
+    }
+
+    public void testLockedData(){
+        LockedDao dao=new LockedDao(getContext());
+        for (int i = 0; i < 5; i++) {
+            dao.remove("xx"+i);
+        }
+        Log.e("xxxxxxxxxxx",dao.getAllLockedDatas().toString());
     }
 }

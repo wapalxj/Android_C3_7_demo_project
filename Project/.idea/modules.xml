@@ -6,13 +6,22 @@
       <module fileurl="file://$PROJECT_DIR$/03_14_popupwindow/03_14_popupwindow.iml" filepath="$PROJECT_DIR$/03_14_popupwindow/03_14_popupwindow.iml" />
       <module fileurl="file://$PROJECT_DIR$/Project.iml" filepath="$PROJECT_DIR$/Project.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/appProcessTest/appProcessTest.iml" filepath="$PROJECT_DIR$/appProcessTest/appProcessTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/autoListView/autoListView.iml" filepath="$PROJECT_DIR$/autoListView/autoListView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bydi300/bydi300.iml" filepath="$PROJECT_DIR$/bydi300/bydi300.iml" />
       <module fileurl="file://$PROJECT_DIR$/c5_hm01_guard/c5_hm01_guard.iml" filepath="$PROJECT_DIR$/c5_hm01_guard/c5_hm01_guard.iml" />
       <module fileurl="file://$PROJECT_DIR$/gpsdemo/gpsdemo.iml" filepath="$PROJECT_DIR$/gpsdemo/gpsdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/testSms/testSms.iml" filepath="$PROJECT_DIR$/testSms/testSms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testamap816/testamap816.iml" filepath="$PROJECT_DIR$/testamap816/testamap816.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testamap818/testamap818.iml" filepath="$PROJECT_DIR$/testamap818/testamap818.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testamap904/testamap904.iml" filepath="$PROJECT_DIR$/testamap904/testamap904.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testamap905/testamap905.iml" filepath="$PROJECT_DIR$/testamap905/testamap905.iml" />
       <module fileurl="file://$PROJECT_DIR$/testlockscreen/testlockscreen.iml" filepath="$PROJECT_DIR$/testlockscreen/testlockscreen.iml" />
       <module fileurl="file://$PROJECT_DIR$/testrocket/testrocket.iml" filepath="$PROJECT_DIR$/testrocket/testrocket.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testwidget/testwidget.iml" filepath="$PROJECT_DIR$/testwidget/testwidget.iml" />
       <module fileurl="file://$PROJECT_DIR$/testwriteexternalstorage7.0/testwriteexternalstorage7.0.iml" filepath="$PROJECT_DIR$/testwriteexternalstorage7.0/testwriteexternalstorage7.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testxutils3.5/testxutils3.5.iml" filepath="$PROJECT_DIR$/testxutils3.5/testxutils3.5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xutils3_sample/xutils3_sample.iml" filepath="$PROJECT_DIR$/xutils3_sample/xutils3_sample.iml" />
     </modules>
   </component>
 </project>

@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.AbsListView;
 
+import com.bumptech.glide.Glide;
 import com.example.autolistview.adapter.ListViewAdapter;
 import com.example.autolistview.widget.AutoListView;
 import com.example.autolistview.widget.AutoListView.OnLoadListener;

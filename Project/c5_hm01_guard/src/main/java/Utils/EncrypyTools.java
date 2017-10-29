@@ -15,7 +15,8 @@ public class EncrypyTools {
     public static String encrypt(int seed,String string){
         byte[] bytes=string.getBytes();
         for (int i =0;i<bytes.length; i++) {
-            bytes[i]^=seed;//对字节加密
+//            bytes[i]^=seed;//对字节加密
+            bytes[i]+=1;//对字节加密,不用种子了
         }
         return new String(bytes);
     }
@@ -30,7 +31,8 @@ public class EncrypyTools {
     public static String decrypt(int seed,String string){
         byte[] bytes=string.getBytes();
         for (int i =0;i<bytes.length; i++) {
-            bytes[i]^=seed;//对字节解密
+//            bytes[i]^=seed;//对字节解密
+            bytes[i]-=1;//对字节加密,不用种子了
         }
         return new String(bytes);
     }

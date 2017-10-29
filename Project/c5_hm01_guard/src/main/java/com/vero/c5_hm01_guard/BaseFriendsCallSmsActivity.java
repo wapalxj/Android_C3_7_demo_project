@@ -81,6 +81,14 @@ public abstract class BaseFriendsCallSmsActivity extends ListActivity {
                         pd.dismiss();
                         pd=null;//垃圾回收释放内存
                     }
+                    //如果手机没有联系人
+                    if (datas.size()==0){
+                        Intent datas=new Intent();
+                        datas.putExtra(MyConstants.SAFENUMBER,"");//保存安全号码为空
+                        //设置数据
+                        setResult(1,datas);
+                        finish();
+                    }
 
                     myAdapater.notifyDataSetChanged();
                     break;

@@ -125,7 +125,8 @@ public class TelSmsSafeActivity extends AppCompatActivity {
         tv_phonelog.setOnClickListener(listener);
         tv_smslog.setOnClickListener(listener);
         //popupwindow
-        mPopupWindow = new PopupWindow(popupContentView, LinearLayoutCompat.LayoutParams.WRAP_CONTENT,
+        mPopupWindow = new PopupWindow(popupContentView,
+                LinearLayoutCompat.LayoutParams.WRAP_CONTENT,
                 LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
 
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

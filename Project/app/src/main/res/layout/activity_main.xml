@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#5b33ec"
     tools:context="vero.com.project.MainActivity">
 
     <ListView
@@ -19,5 +20,12 @@
         android:text="点我"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/pile_sos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip"
+
+        android:src="@drawable/pile_sos" />
 
 </LinearLayout>

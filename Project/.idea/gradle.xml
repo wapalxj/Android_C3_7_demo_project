@@ -12,13 +12,22 @@
             <option value="$PROJECT_DIR$/03_12_menu_change_appname" />
             <option value="$PROJECT_DIR$/03_14_popupwindow" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/appProcessTest" />
             <option value="$PROJECT_DIR$/autoListView" />
+            <option value="$PROJECT_DIR$/bydi300" />
             <option value="$PROJECT_DIR$/c5_hm01_guard" />
             <option value="$PROJECT_DIR$/gpsdemo" />
             <option value="$PROJECT_DIR$/testSms" />
+            <option value="$PROJECT_DIR$/testamap816" />
+            <option value="$PROJECT_DIR$/testamap818" />
+            <option value="$PROJECT_DIR$/testamap904" />
+            <option value="$PROJECT_DIR$/testamap905" />
             <option value="$PROJECT_DIR$/testlockscreen" />
             <option value="$PROJECT_DIR$/testrocket" />
+            <option value="$PROJECT_DIR$/testwidget" />
             <option value="$PROJECT_DIR$/testwriteexternalstorage7.0" />
+            <option value="$PROJECT_DIR$/testxutils3.5" />
+            <option value="$PROJECT_DIR$/xutils3_sample" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

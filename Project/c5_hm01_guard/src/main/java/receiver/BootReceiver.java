@@ -29,17 +29,20 @@ public class BootReceiver extends BroadcastReceiver {
         String oldsim= SpTools.getString(context, MyConstants.SIM,"");
         //获取当前手机SIM卡信息
         TelephonyManager tm= (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        String simSerialNumber=tm.getSimSerialNumber();
-        Toast.makeText(context,""+simSerialNumber,Toast.LENGTH_LONG).show();
+        String simSerialNumber = tm.getSimSerialNumber();
+        Toast.makeText(context, "" + simSerialNumber, Toast.LENGTH_LONG).show();
         //判断是否变化
-        if(!oldsim.toString().equals(simSerialNumber+1)){
+        if (!oldsim.toString().equals(simSerialNumber + 1)) {
             //sim卡变化，发送报警短信
             //取出安全号码
-            String safeNum=SpTools.getString(context,MyConstants.SAFENUMBER,"");
-            safeNum= EncrypyTools.decrypt(MyConstants.ENCRYSEED,safeNum);//解密安全号码
-            //发送短信给安全号码
-            SmsManager sm=SmsManager.getDefault();
-            sm.sendTextMessage(safeNum,"","wo shi xiao tou--hm guard",null,null);
+            String safeNum = SpTools.getString(context, MyConstants.SAFENUMBER, "");
+            if (!safeNum.equals("")) {
+                safeNum = EncrypyTools.decrypt(MyConstants.ENCRYSEED, safeNum);//解密安全号码
+                //发送短信给安全号码
+                SmsManager sm = SmsManager.getDefault();
+                Log.e("安全号码", safeNum);
+                sm.sendTextMessage(safeNum, "", "wo shi xiao tou--hm guard", null, null);
+            }
         }
 
         //开机自动启动防盗服务

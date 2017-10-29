@@ -3,5 +3,6 @@
     <declare-styleable name="SettingCenterItemView">
         <attr name="title" format="string" />
         <attr name="content" format="string" />
+        <attr name="cb_bg" format="reference|color" />
     </declare-styleable>
 </resources>

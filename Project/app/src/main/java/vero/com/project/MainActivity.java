@@ -3,13 +3,16 @@ package vero.com.project;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MyAdapter myAdapter;
     private int[] myChoices;//我选择的答案
     private int[] res;//参考答案
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +73,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtn.setOnClickListener(this);
         myAdapter=new MyAdapter();
         mListView.setAdapter(myAdapter);
+        imageView= (ImageView) findViewById(R.id.pile_sos);
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        imageView.setAlpha(0.5f);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageView.setAlpha(1f);
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     @Override

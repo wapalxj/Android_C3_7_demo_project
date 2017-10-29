@@ -20,6 +20,7 @@ import Utils.ServiceUtils;
 import Utils.SpTools;
 import service.ComingPhoneService;
 import service.TelSmsBlackService;
+import service.WatchDogService;
 import view.SettingCenterItemView;
 
 public class SettingCenterActivity extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class SettingCenterActivity extends AppCompatActivity {
     private ImageView iv_changeStyle;//归属地选择样式
     private Dialog dialog;//归属地对话框
     private RelativeLayout rl_location_root;//归属地样式根布局
+    private SettingCenterItemView sciv_watchdog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,8 @@ public class SettingCenterActivity extends AppCompatActivity {
         sciv_blackservice.setChecked(ServiceUtils.isServiceRunning(SettingCenterActivity.this, "service.TelSmsBlackService"));
         //初始化来电归属地服务cb初始值
         sciv_phonelocationService.setChecked(ServiceUtils.isServiceRunning(SettingCenterActivity.this, "service.ComingPhoneService"));
-
+        //初始化看门狗初始CB
+        sciv_watchdog.setChecked(ServiceUtils.isServiceRunning(SettingCenterActivity.this, "service.WatchDogService"));
     }
 
     /**
@@ -59,6 +62,27 @@ public class SettingCenterActivity extends AppCompatActivity {
      */
     private String[] styleNames=new String[]{"卫士蓝","金属灰","苹果绿","半透明"};
     private void initEvent() {
+        //看门狗服务事件
+        sciv_watchdog.setItemClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //判断看门狗服务是否正在运行
+                boolean isRunning=ServiceUtils.isServiceRunning(SettingCenterActivity.this, "service.WatchDogService");
+                if(isRunning){
+                    //关闭服务
+                    Intent watchDogService=new Intent(SettingCenterActivity.this, WatchDogService.class);
+                    stopService(watchDogService);
+                    //设置复选框状态
+                    sciv_watchdog.setChecked(false);
+                }else {
+                    //打开服务
+                    Intent watchDogService=new Intent(SettingCenterActivity.this,WatchDogService.class);
+                    startService(watchDogService);
+                    //设置复选框状态
+                    sciv_watchdog.setChecked(true);
+                }
+            }
+        });
         //归属地根布局事件
         rl_location_root.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -173,6 +197,8 @@ public class SettingCenterActivity extends AppCompatActivity {
         sciv_blackservice= (SettingCenterItemView) findViewById(R.id.sciv_setting_blacksevice);
         //获取来电显示服务的设置
         sciv_phonelocationService= (SettingCenterItemView) findViewById(R.id.sciv_setting_phonelocationsevice);
+        //看门狗服务
+        sciv_watchdog = (SettingCenterItemView) findViewById(R.id.sciv_setting_watchdogsevice);
 
         //归属地样式根布局
         rl_location_root = (RelativeLayout) findViewById(R.id.rl_setting_locationstyle_root);
@@ -180,6 +206,7 @@ public class SettingCenterActivity extends AppCompatActivity {
         tv_ls_content = (TextView) findViewById(R.id.tv_setting_locationstyle_content);
         //归属地样式的按钮
         iv_changeStyle = (ImageView) findViewById(R.id.iv_setting_locationstyle_selector);
+
 
     }
 }

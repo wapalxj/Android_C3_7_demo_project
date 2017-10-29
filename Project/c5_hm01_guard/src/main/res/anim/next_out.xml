@@ -5,4 +5,6 @@
     android:fromYDelta="0"
     android:toYDelta="0"
     android:duration="500">
+    <!--当前Acticity退出的动画-->
+    <!--从左向右滑动：x从0到-100%-->
 </translate>

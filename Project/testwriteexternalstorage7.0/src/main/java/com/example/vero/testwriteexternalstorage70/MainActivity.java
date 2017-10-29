@@ -24,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkePermission();
-
-
     }
 
 
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         //写到文件
         long len=Environment.getExternalStorageDirectory().getFreeSpace();
         Log.e("len",""+len);
-
 
         File file=new File(Environment.getExternalStorageDirectory(),"test.txt");
         FileOutputStream fos= null;

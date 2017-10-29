@@ -1,2 +1,3 @@
-include ':app', ':c5_hm01_guard', ':testSms', ':gpsdemo', ':testlockscreen', ':03_12_menu_change_appname', ':03_14_popupwindow', ':testrocket', ':testwriteexternalstorage7.0'
+include ':app', ':c5_hm01_guard', ':testSms', ':gpsdemo', ':testlockscreen', ':03_12_menu_change_appname', ':03_14_popupwindow', ':testrocket', ':testwriteexternalstorage7.0', ':testwidget', ':testxutils3.5', ':xutils3_sample', ':testamap816', ':testamap818', ':testamap904', ':bydi300', ':testamap905'
 include ':autoListView'
+include ':appProcessTest'

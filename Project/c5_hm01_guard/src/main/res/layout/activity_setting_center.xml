@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         itheima:title="自动更新设置"
         itheima:content="自动更新已经关闭-自动更新已经打开"
+        itheima:cb_bg="@drawable/checkbox_style"
         >
     </view.SettingCenterItemView>
     <view.SettingCenterItemView
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         itheima:title="黑名单拦截设置"
         itheima:content="黑名单拦截已经关闭-黑名单拦截已经打开"
+        itheima:cb_bg="@drawable/checkbox_style"
         >
     </view.SettingCenterItemView>
     <view.SettingCenterItemView
@@ -34,46 +36,55 @@
         android:layout_height="wrap_content"
         itheima:title="来电归属地设置"
         itheima:content="来电归属地设置已经关闭-来电归属地设置已经打开"
+        itheima:cb_bg="@drawable/checkbox_style"
+        >
+    </view.SettingCenterItemView>
+    <view.SettingCenterItemView
+        android:id="@+id/sciv_setting_watchdogsevice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        itheima:title="看门狗服务"
+        itheima:content="看门狗服务已经关闭-看门狗服务已经打开"
+        itheima:cb_bg="@drawable/checkbox_style"
         >
     </view.SettingCenterItemView>
 
-
     <RelativeLayout
         android:id="@+id/rl_setting_locationstyle_root"
-        android:background="@drawable/btn_selector"
-        android:clickable="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_selector"
+        android:clickable="true">
+
         <TextView
-            android:layout_margin="5dp"
             android:id="@+id/tv_setting_locationstyle_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:layout_margin="5dp"
             android:text="归属地显示风格"
-            />
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/tv_setting_locationstyle_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_setting_locationstyle_title"
-            android:textSize="18sp"
             android:layout_margin="5dp"
             android:text="卫士蓝"
-            />
+            android:textSize="18sp" />
+
         <ImageView
             android:id="@+id/iv_setting_locationstyle_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/iv_jiantou_selector"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            />
+            android:src="@drawable/iv_jiantou_selector" />
+
         <View
-            android:layout_below="@+id/tv_setting_locationstyle_content"
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:background="@mipmap/list_devider"
-            />
+            android:layout_below="@+id/tv_setting_locationstyle_content"
+            android:background="@mipmap/list_devider" />
     </RelativeLayout>
 </LinearLayout>

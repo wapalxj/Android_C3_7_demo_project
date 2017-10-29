@@ -25,6 +25,7 @@ import android.widget.Toast;
 import Utils.MD5Utils;
 import Utils.MyConstants;
 import Utils.SpTools;
+import dao.AntiVirusDao;
 
 public class HomeActivity extends AppCompatActivity {
     private GridView mGridView_menus;
@@ -77,6 +78,22 @@ public class HomeActivity extends AppCompatActivity {
 //                        Intent safe=new Intent(HomeActivity.this,TelSmsSafeActivityPage.class);
                         Intent safe=new Intent(HomeActivity.this,TelSmsSafeActivity.class);
                         startActivity(safe);
+                        break;
+                    case 2://软件管家
+                        Intent appmanager=new Intent(HomeActivity.this,AppManagerActivity.class);
+                        startActivity(appmanager);
+                        break;
+                    case 3://进程管家
+                        Intent taskmanager=new Intent(HomeActivity.this,TaskManagerActivity.class);
+                        startActivity(taskmanager);
+                        break;
+                    case 4://流量 统计
+                        Intent conn=new Intent(HomeActivity.this,ConnectivityActivity.class);
+                        startActivity(conn);
+                        break;
+                    case 5://扫描病毒
+                        Intent virus=new Intent(HomeActivity.this, AntivirusActivity.class);
+                        startActivity(virus);
                         break;
                      default:
                         break;

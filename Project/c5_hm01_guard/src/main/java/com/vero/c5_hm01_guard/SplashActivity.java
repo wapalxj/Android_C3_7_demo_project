@@ -78,8 +78,10 @@ public class SplashActivity extends AppCompatActivity {
         initView();
         initData();
         initAnimation();
-        //拷贝数据库
+        //拷贝数据库--手机归属地
         copyDB("address.db");
+        //拷贝数据库--病毒数据库
+        copyDB("antivirus.db");
     }
 
     //拷贝文件

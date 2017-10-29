@@ -1,11 +1,13 @@
 package com.vero.c5_hm01_guard;
 
 import android.content.Intent;
+import android.mtp.MtpEvent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 
 /**
  * Created by Administrator on 2016/12/5.
@@ -18,11 +20,8 @@ public abstract class BaseSetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initView();
         iniGesture();//初始化手势识别器
-
         initData();//初始化数据
         initEvent();//初始化组件事件
-
-
     }
 
 
@@ -36,7 +35,6 @@ public abstract class BaseSetupActivity extends AppCompatActivity {
         //2,动画的播放
         nextActivity();
         nextAnimation();
-
     }
     public void initData() {
 

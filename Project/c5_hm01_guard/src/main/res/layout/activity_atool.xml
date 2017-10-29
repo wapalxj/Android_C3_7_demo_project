@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:background="#ccc"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
     <TextView
         style="@style/tv_title"
         android:text="高级工具"
@@ -33,6 +33,14 @@
         android:textColor="#000"
         android:onClick="smsBaike"
         />
+
+    <ProgressBar
+        android:id="@+id/pb_smsbeike_progress"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/tv_popup_black_phonelog"
         android:text="短信的还原"
@@ -43,8 +51,10 @@
         android:textSize="18sp"
         android:clickable="true"
         android:textColor="#000"
+        android:onClick="smsResume"
         />
     <TextView
+        android:onClick="lockActivity"
         android:id="@+id/tv_popup_black_smslog"
         android:text="程序锁"
         android:layout_width="match_parent"

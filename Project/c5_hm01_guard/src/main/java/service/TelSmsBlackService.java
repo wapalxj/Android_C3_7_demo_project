@@ -1,5 +1,8 @@
 package service;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,6 +15,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.provider.Telephony;
+import android.support.v4.app.NotificationCompat;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.SmsMessage;
@@ -19,6 +23,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.internal.telephony.ITelephony;
+import com.vero.c5_hm01_guard.R;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -40,6 +45,18 @@ public class TelSmsBlackService extends Service {
 
     @Override
     public void onCreate() {
+        Log.e("ComingPhoneService","onCreate");
+        //提高服务运行级别
+        NotificationCompat.Builder builder= new NotificationCompat.Builder(getApplication());
+        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setContentTitle("vero_guard");
+        builder.setContentText("vnix_guard");
+        Intent intent=new Intent();
+        intent.setAction("com.vero.guard.homeactivity");
+        PendingIntent pendingIntent=PendingIntent.getActivity(getApplicationContext(),0,intent,0);
+        builder.setContentIntent(pendingIntent);
+        Notification notification=builder.build();
+        startForeground(1,notification);
         //初始化黑名单业务类
         dao = new BlackDao(getApplicationContext());
         //注册短信监听--->广播

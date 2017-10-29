@@ -1,10 +1,15 @@
 package service;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.PixelFormat;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.os.SystemClock;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -34,11 +39,19 @@ public class ComingPhoneService extends Service {
     private float startY;
     private float moveX;
     private float moveY;
+    private OutCallReceiver outCallReceiver;
 
     @Override
     public void onCreate() {
+        Log.e("ComingPhoneService","onCreate");
+        //外拨电话
+        outCallReceiver = new OutCallReceiver();
+        IntentFilter filter=new IntentFilter();
+        filter.addAction(Intent.ACTION_NEW_OUTGOING_CALL);
+        registerReceiver(outCallReceiver,filter);
         //初始化吐司参数
         initToastParams();
+        //WindowManager mWM;//用来设置Toast的view
         mWM = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
         //初始化电话状态监听
         //获取电话管理器
@@ -94,6 +107,8 @@ public class ComingPhoneService extends Service {
     int bgStyles[]=new int[]{R.mipmap.call_locate_blue,R.mipmap.call_locate_gray,R.mipmap.call_locate_green,R.mipmap.call_locate_white};
 
     private void showLocationToast(String incomingNumber) {
+        //如果先后2个电话打进来，先关闭前一个，在显示后一个
+        closeLocationToast();
         //吐司显示的view
         mView=View.inflate(this, R.layout.sys_toast,null);
         //设置Toast背景
@@ -153,16 +168,38 @@ public class ComingPhoneService extends Service {
         mWM.addView(mView, mParams);
     }
 
+    private Handler handler =new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            closeLocationToast();
+        }
+    };
     /**
      * 关闭吐司
      */
     private void closeLocationToast() {
         //Toast是加载到windowmanager中的，window不关闭，Toast就不会关闭，所以需要我们主动关闭
-        //初始先执行一次
-        if (mView!=null){
-            mWM.removeView(mView);
-            mView = null;
+        if (iSoutCall){
+            //是外拨电话
+            //延迟关闭
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //3秒后关闭
+                    SystemClock.sleep(3000);
+                    handler.obtainMessage().sendToTarget();
+                }
+            }).start();
+            iSoutCall=false;
+        }else {
+            //接听电话直接关闭
+            if (mView!=null){
+                mWM.removeView(mView);
+                mView = null;
+            }
         }
+
 
     }
 
@@ -175,6 +212,23 @@ public class ComingPhoneService extends Service {
     public void onDestroy() {
         //注销监听
         tm.listen(listener,PhoneStateListener.LISTEN_NONE);
+        //注销外拨广播
+        unregisterReceiver(outCallReceiver);
         super.onDestroy();
+    }
+
+    /**
+     * 电话外拨的广播
+     */
+    private boolean iSoutCall=false;//是否外拨电话
+    private class OutCallReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //获取外拨电话号码
+            String phoneNumber=getResultData();
+            showLocationToast(phoneNumber);
+            iSoutCall=true;//因为showLocationToast中第一行代码为关闭Toast，所以这个标记只能在showLocationToast后面执行
+        }
     }
 }

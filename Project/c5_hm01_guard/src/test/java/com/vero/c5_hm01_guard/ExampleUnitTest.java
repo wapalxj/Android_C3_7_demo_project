@@ -2,7 +2,7 @@ package com.vero.c5_hm01_guard;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static junit.framework.Assert.*;
 
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.

@@ -52,6 +52,9 @@ public class Setup3Activity extends BaseSetupActivity {
         if(data!=null){//用户选择数据来关闭联系人界面，而不是点击返回键
             //取数据
             String phone=data.getStringExtra(MyConstants.SAFENUMBER);
+            if (TextUtils.isEmpty(phone)){
+                Toast.makeText(getApplicationContext(),"没有选择联系人",Toast.LENGTH_SHORT).show();
+            }
             //显示安全号码
             et_safeNumber.setText(phone);
         }
